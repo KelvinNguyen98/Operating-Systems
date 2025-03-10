@@ -1,2 +1,2 @@
 # Operating-Systems
-# Naomi Douglass and Kelvin Nguyen
+# Naomi Douglas and Kelvin Nguyen
