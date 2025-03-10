@@ -11,7 +11,7 @@ calculate the waiting time and turnaround time
 Step 3: Display Gantt chart
 At the end include Waiting Time (WT) for each process, Turnaround Time (TAT) for each process, and Average WT and TAT
 
-Step 4 (optional): do memory allocation
+Step 4 (optional): Do memory allocation
 
-Step 5: submit
+Step 5: Submit
 */
