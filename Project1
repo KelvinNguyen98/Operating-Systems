@@ -1,2 +1,17 @@
-// Project 1 code
-// hiiiiii
+// Project 1 
+// planning
+
+/*
+Step 1: create a readble text file with process ID, arrival time, burst time, and priority
+
+Step 2: implement two scheduling algorithms, we will do shortest job first and first come first serve
+ calculate the waiting time and turnaround time
+
+Step 3: Display Gantt chart
+At the end include Waiting Time (WT) for each process, Turnaround Time (TAT) for each process, and Average WT and TAT
+
+Step 4 (optional): do memory allocation
+
+Step 5: submit
+
+*/
