@@ -5,8 +5,8 @@
  import java.util.Scanner;               // scanner class to read text files
 
  public class ReadFile{
-    public static void main(String[] args){
-        try{
+    public static void main(String[] args) {
+        try {
             File myObj = new File("Project1_processes.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()){
