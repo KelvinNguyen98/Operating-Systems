@@ -16,7 +16,7 @@
             }
             myReader.close();
         }   catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Error opening file. Project1_processes.txt is not in the src folder.");
             e.printStackTrace();
         }
     }
