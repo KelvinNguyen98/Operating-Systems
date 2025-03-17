@@ -1,4 +1,5 @@
 // Read text file and store data in memory
+// Source: w3schools
 
  import java.io.File;                    // file class
  import java.io.FileNotFoundException;   // class handles errors
