@@ -1,5 +1,7 @@
-// Read text file and store data in memory
-// Source: w3schools
+/* 
+   This program reads data from a text file and stores the data in memory
+   Source: w3schools
+*/
 
 import java.io.File;                    // file class
 import java.io.FileNotFoundException;   // class handles errors
