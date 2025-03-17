@@ -3,9 +3,9 @@
    Source: w3schools
 */
 
-import java.io.File;                    // file class
-import java.io.FileNotFoundException;   // class handles errors
-import java.util.Scanner;               // scanner class to read text files
+import java.io.File;                    // File class
+import java.io.FileNotFoundException;   // Class handles errors
+import java.util.Scanner;               // Scanner class to read text files
 
 public class ReadFile {
    public static void main(String[] args) {
