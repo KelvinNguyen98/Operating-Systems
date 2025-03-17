@@ -5,7 +5,7 @@ Planning
 
 Step 1: Create a readable text file with process ID, arrival time, burst time, and priority
 
-Step 2: Implement two scheduling algorithms - will do Shortest Job First (SJF) and First Come First Serve (FCFS);
+Step 2: Implement two scheduling algorithms - will do First Come First Serve (FCFS) and Shortest Job First (SJF);
 calculate the waiting time and turnaround time
 
 Step 3: Display Gantt chart
