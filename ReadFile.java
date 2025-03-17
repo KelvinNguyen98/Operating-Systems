@@ -10,11 +10,9 @@ public class ReadFile {
        try {
            File myObj = new File("Project1_processes.txt");
            Scanner myReader = new Scanner(myObj);
-           while (myReader.hasNextLine()) {
-               String data = myReader.nextLine();
-               System.out.println(data);
-           }
+           System.out.println("File read successfully");
            myReader.close();
+
        }   catch (FileNotFoundException e) {
            System.out.println("Error opening file. Project1_processes.txt is not in the src folder.");
            e.printStackTrace();
