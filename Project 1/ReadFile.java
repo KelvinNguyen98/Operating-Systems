@@ -1,5 +1,5 @@
 /* 
-   This program reads data from a text file and stores the data in memory
+   This program reads data from the Project1_processes file and stores the data in memory
    Source: w3schools
 */
 
