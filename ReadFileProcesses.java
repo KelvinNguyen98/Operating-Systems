@@ -1,15 +1,8 @@
-/*
- *  READ TXT FILE AND STORE IN MEMORY
- * 
- * 
- * 
- * 
- * 
- */
+// Read text file and store data in memory
 
- import java.io.File; //file class
- import java.io.FileNotFoundException; // class handles errors
- import java.util.Scanner; // scanner class to read text files
+ import java.io.File;                    // file class
+ import java.io.FileNotFoundException;   // class handles errors
+ import java.util.Scanner;               // scanner class to read text files
 
  public class ReadFile{
     public static void main(String[] args){
@@ -25,6 +18,5 @@
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
  }
