@@ -18,7 +18,7 @@ public class Main {
     // and stores the data in memory
     public static void ReadFile(String[] args) {
         try {
-            File myObj = new File("Project!_processes.txt");
+            File myObj = new File("Project1_processes.txt");
             // Read data from the text file
             Scanner myReader = new Scanner(myObj);
             // Close scanner to stop reading from the text file
