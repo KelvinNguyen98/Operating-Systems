@@ -5,11 +5,13 @@ import java.util.*;
 
 class ShortestJobFirst {
     private int[][] A;
+    private int[][] results; // Stores final process info
     private int n;
 
     public ShortestJobFirst(int[][] processInfo) {
         this.n = processInfo.length;
         this.A = new int[n][4];
+        this.results = new int[n][4]; // matrix for storing process ID, burst time, waiting time, and ATT
         
         // Copy input data
         for (int i = 0; i < n; i++) {
@@ -22,7 +24,7 @@ class ShortestJobFirst {
         int total = 0;
         float avg_wt, avg_tat;
 
-        // Sorting by burst time
+        // sorting by burst time
         for (int i = 0; i < n; i++) {
             int index = i;
             for (int j = i + 1; j < n; j++) {
@@ -32,13 +34,13 @@ class ShortestJobFirst {
             }
             int temp = A[i][1];
             A[i][1] = A[index][1];
-            A[index][1] = temp; // Swap burst time
+            A[index][1] = temp; // swap burst time
             temp = A[i][0];
             A[i][0] = A[index][0];
-            A[index][0] = temp; // Swap process IDs
+            A[index][0] = temp; // swap process IDs
         }
 
-        A[0][2] = 0; // First process has zero wait time
+        A[0][2] = 0; // first process has zero wait time
         
         // Calculate waiting times
         for (int i = 1; i < n; i++) {
@@ -51,16 +53,22 @@ class ShortestJobFirst {
         avg_wt = (float) total / n;
         total = 0;
 
-        System.out.println("P\tBT\tWT\tTAT");
-
         // Turnaround time calculation
         for (int i = 0; i < n; i++) {
             A[i][3] = A[i][1] + A[i][2]; // TAT = BT + WT
             total += A[i][3];
-            System.out.println("P" + A[i][0] + "\t" + A[i][1] + "\t" + A[i][2] + "\t" + A[i][3]);
+
+            // Store results in the results array
+            results[i][0] = A[i][0]; // Process ID
+            results[i][1] = A[i][1]; // Burst Time
+            results[i][2] = A[i][2]; // Waiting Time
+            results[i][3] = A[i][3]; // Turnaround Time
         }
         avg_tat = (float) total / n;
-        System.out.println("Average Waiting Time= " + avg_wt);
-        System.out.println("Average Turnaround Time= " + avg_tat);
+    }
+
+    // getter method to retrieve results
+    public int[][] getResults() {
+        return results;
     }
 }
