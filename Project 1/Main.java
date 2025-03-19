@@ -197,7 +197,7 @@
         System.out.print(results[0][4]);
         // End time of each process
         for (int i = 0; i < n; i++) {
-            System.out.print("      " + (results[i][4] + results[i][1])); 
+            System.out.printf("      %d", results[i][4] + results[i][1]); 
         }
         System.out.println();
     }
