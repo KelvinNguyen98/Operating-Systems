@@ -68,8 +68,6 @@
     }
  }
 
- // Class for scheduling algorithm: Shortest Job First
- // Contributer: Naomi Douglas
 // Class for scheduling algorithm: Shortest Job First
 // Contributor: Naomi Douglas
 class ShortestJobFirst {
@@ -163,8 +161,6 @@ class ShortestJobFirst {
         System.out.printf("%nAverage Waiting Time (WT) = %.2f", averageWT);
         System.out.printf("%nAverage Turnaround Time (TAT) = %.2f%n%n", averageTAT);
     }
-
-
 }
 
 
