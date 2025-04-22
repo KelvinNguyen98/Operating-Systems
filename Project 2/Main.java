@@ -14,6 +14,8 @@
  import java.util.*;            // Arrays, Lists, etc. 
  import java.util.concurrent.*; // Semaphore and and ReentrantLock
  import java.io.*;              // File, Exception, etc. 
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
  // Class to read and process the text file
  // Contributer: Naomi Douglas and Kelvin Nguyen
@@ -78,6 +80,64 @@
             Thread.sleep(burstTime * 1000);
         } catch (InterruptedException e) {}
         System.out.println("Process " + pid + " finished.");
+    }
+ }
+
+ // Buffer for producer-consumer
+ // Contributer: Kelvin Nguyen
+ class buffer {
+    // Variables that cannot be changed and are private to the other methods
+    // Linked list
+    private final Queue<Integer> queue = new LinkedList<>();
+    // Capacity of buffer
+    private final int capacity;
+    
+    //Two semaphores for buffer
+
+    //Number of buffer slots
+    //Incremented each time producer places new data item into buffer
+    //Decremented each time consumer removes item from buffer
+    private final Semaphore f;
+    // Number of empty slots
+    private final Semaphore e;
+    // Lock (synchronization barrier)
+    private final Lock mutex = new ReentrantLock();
+
+    // Buffer method
+    public buffer(int capacity) {
+        this.capacity = capacity;
+        this.f = new Semaphore(0);
+        this.e = new Semaphore(capacity);
+    }
+
+    // Producer method for thread activity
+    public void produce(int item) throws InterruptedException {
+        System.out.println("[Producer] Waiting for empty slot...");
+        empty.acquire();
+        mutex.lock();
+        try {
+            queue.add(item);
+            System.out.println("[Producer] Produced item: " + item);
+        } finally {
+            mutex.unlock();
+            full.release();
+        }
+    }
+
+    // Consumer method for thread activity
+    public int consume(int consumerID) throws InterruptedException {
+        System.out.println("[Consumer " + consumerID + "] Waiting for item...");
+        full.acquire();
+        mutex.lock();
+        int item;
+        try {
+            item = queue.remove();
+            System.out.println("[Consumer " + consumerID + "] Consumed item: " + item);
+        } finally {
+            mutex.unlocked();
+            empty.release();
+        }
+        return item;
     }
  }
 
