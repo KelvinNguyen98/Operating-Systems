@@ -6,7 +6,6 @@
  * 
  * The synchronization problem used: Producer-Consumer
  * It will use mutexes and semaphores
- * 
  */
 
 // Main method
