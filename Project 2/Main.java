@@ -10,14 +10,76 @@
  * Sources: geeksforgeeks
  */
 
+
  import java.util.*;            // Arrays, Lists, etc. 
  import java.util.concurrent.*; // Semaphore and and ReentrantLock
  import java.io.*;              // File, Exception, etc. 
 
-// Main method
-// Contributer: Naomi Douglas and Kelvin Nguyen
-public class Main {
-    public static void main(String[] args) {
-        // Main code
+ // Class to read and process the text file
+ // Contributer: Naomi Douglas and Kelvin Nguyen
+ class ProcessFileReader {
+    private String fileName;
+    
+    // Constructor
+    public ProcessFileReader(String fileName) {
+        this.fileName = fileName;
     }
-}
+
+    // Method to read data from text file
+    public List<int[]> readProcesses() {
+        List<int[]> processList = new ArrayList<>();
+
+        try {
+            File file = new File(fileName);
+            // Reads contents of text file
+            Scanner scanner = new Scanner(file);
+
+            // Ignores the header of text file
+            if (scanner.hasNextLine()) {
+                scanner.nextLine();
+            }
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+                if (!line.isEmpty()) {
+                    String[] parts = line.split("\\s+");
+                    // Since our text file only has 3 columns, it'll check for 3 columns
+                    if (parts.length == 3) {
+                        int[] process = new int[3];
+                        for (int i = 0; i < 3; i++) {
+                            process[i] = Integer.parseInt(parts[i]); 
+                        }
+                        processList.add(process);
+                    }
+                }
+            }
+            // Closes after reading contents of text file
+            scanner.close();
+            // Returns error if file is not found
+        } catch (FileNotFoundException e) {
+            System.out.printf("Error opening file: %s not found in folder%n", fileName);
+            e.printStackTrace();
+        }
+        return processList;
+    }
+
+    
+ }
+
+ // Main Method
+ // Contributer: Noami Douglas and Kelvin Nguyen
+ public class Main {
+    public static void main(String[] args) {
+        // Path to text file
+        ProcessFileReader reader = new ProcessFileReader("Project2_processes.txt");
+        List <int[]> processList = reader.readProcesses();
+
+        // If text file is empty, return message
+        if (processList.isEmpty()) {
+            System.out.println("No data to be processed.");
+            return;
+        }
+    }
+
+
+ }
