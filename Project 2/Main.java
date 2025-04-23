@@ -12,7 +12,7 @@
 
  import java.io.*;      // File, Exception, etc. 
  import java.util.*;    // Arrays, Lists, etc.
- import java.util.concurrent.*;        // Semaphores
+ import java.util.concurrent.*;   // Semaphores
  import java.util.concurrent.locks.*;  // ReentrantLock
 
  // Class to read and process the text file
@@ -139,7 +139,7 @@
         try {
             // Consumer removes item from buffer
             item = queue.remove();
-            System.out.printf("[Consumer %d] Consumed item: %d\n", consumerID, item);
+            System.out.printf("[Consumer %d] Consumed item: %d%n", consumerID, item);
         } finally {
             // Unlocks for next thread to access
             mutex.unlock();
@@ -206,7 +206,7 @@
  }
 
  // Main Method
- // Contributor: Naomi Douglas and Kelvin Nguyen
+ // Contributor: Noami Douglas and Kelvin Nguyen
  public class Main {
     public static void main(String[] args) {
         // Path to text file
