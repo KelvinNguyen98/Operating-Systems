@@ -14,8 +14,6 @@
  import java.util.*;            // Arrays, Lists, etc. 
  import java.util.concurrent.*; // Semaphore and and ReentrantLock
  import java.io.*;              // File, Exception, etc. 
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
  // Class to read and process the text file
  // Contributer: Naomi Douglas and Kelvin Nguyen
