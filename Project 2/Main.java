@@ -11,12 +11,12 @@
  */
 
  import java.io.*;      // File, Exception, etc. 
- import java.util.*;    // Arrays, Lists, etc.
+ import java.util.*;    // Arrays, Lists, etc.// Semaphore
  import java.util.concurrent.*;   // Semaphores
  import java.util.concurrent.locks.*;  // ReentrantLock
 
  // Class to read and process the text file
- //Contributor: Naomi Douglas and Kelvin Nguyen
+ // Contributer: Naomi Douglas and Kelvin Nguyen
  class ProcessFileReader {
     private String fileName;
     
@@ -82,7 +82,7 @@
  }
 
  // Buffer for producer-consumer
- //Contributor: Kelvin Nguyen
+ // Contributer: Kelvin Nguyen
  class Buffer {
     // Queue
     private final Queue<Integer> queue = new LinkedList<>();
@@ -150,8 +150,63 @@
     }
  }
 
+ // Producer class
+ // Contributer: Naomi Douglas
+ class Producer extends Thread {
+    // Buffer for producer
+    private final Buffer buffer;
+    // Number of items
+    private final int numItems;
+
+    // Producer method 
+    public Producer(Buffer buffer, int numItems) {
+        this.buffer = buffer;
+        this.numItems = numItems;
+    }
+
+    // Method to simulate production time
+    public void run() {
+        for (int i = 1; i <= numItems; i++) {
+            try {
+                // Thread waits
+                Thread.sleep(1000);
+                // Shows thread activity (producer)
+                buffer.produce(i);
+            } catch (InterruptedException e) {}
+        }
+        System.out.println("[Producer] Finished producing.");
+    }
+ }
+
+ // Consumer class
+ // Contributer: Naomi Douglas
+ class Consumer extends Thread {
+    // Buffer for consumer
+    private final Buffer buffer; 
+    // ID
+    private final int id;
+
+    // Consumer method
+    public Consumer(Buffer buffer, int id) {
+        this.buffer = buffer;
+        this.id = id;
+    }
+    
+    // Method to simulate consumption time
+    public void run() {
+        try {
+            while (true) { 
+                // Thread waits
+                Thread.sleep(1500);
+                // Shows thread activity (consumer)
+                buffer.consume(id);
+            }
+        } catch (InterruptedException e) {}
+    }
+ }
+
  // Main Method
- // Contributor: Noami Douglas and Kelvin Nguyen
+ // Contributer: Naomi Douglas and Kelvin Nguyen
  public class Main {
     public static void main(String[] args) {
         // Path to text file
@@ -163,4 +218,66 @@
             System.out.println("No data to be processed.");
             return;
         }
+
+        // Track real time start
+        long startTime = System.currentTimeMillis();
+        List<Thread> threads = new ArrayList<>();
+
+        // Process thread at arrival time
+        for (int[] proc : processList) {
+            int pid = proc[0];
+            int arrival = proc[1];
+            int burst = proc[2];
+
+            try {
+                long delay = (arrival * 1000) - (System.currentTimeMillis() - startTime);
+                // Waits until arrival time
+                if (delay > 0) Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Create process thread
+            ProcessThread pt = new ProcessThread(pid, burst);
+            threads.add(pt);
+            // Start process
+            pt.start();
+        }
+
+        // Wait for threads to finish
+        for (Thread t : threads) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("\n--- Producer-Consumer Simulation --- \n");
+
+        // Buffer size is 5
+        int bufferSize = 5;
+        Buffer buffer = new Buffer(bufferSize);
+        // 5 items to produce 
+        Producer producer = new Producer(buffer, 5);
+        producer.start();
+
+        int numConsumers = 5;
+        for (int i = 0; i < numConsumers; i++) {
+            // Start each consumer
+            new Consumer(buffer, i + 1).start();
+        }
+
+        try {
+            // Wait for producer to finish
+            producer.join();
+            // Allow consumers to process 
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Closes consumer threads
+        System.exit(0);
+    }
  }
