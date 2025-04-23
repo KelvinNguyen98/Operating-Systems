@@ -11,12 +11,12 @@
  */
 
  import java.io.*;      // File, Exception, etc. 
- import java.util.*;    // Arrays, Lists, etc.// Semaphore
+ import java.util.*;    // Arrays, Lists, etc.
  import java.util.concurrent.*;   // Semaphores
  import java.util.concurrent.locks.*;  // ReentrantLock
 
  // Class to read and process the text file
- // Contributer: Naomi Douglas and Kelvin Nguyen
+ //Contributor: Naomi Douglas and Kelvin Nguyen
  class ProcessFileReader {
     private String fileName;
     
@@ -82,7 +82,7 @@
  }
 
  // Buffer for producer-consumer
- // Contributer: Kelvin Nguyen
+ //Contributor: Kelvin Nguyen
  class Buffer {
     // Queue
     private final Queue<Integer> queue = new LinkedList<>();
@@ -151,7 +151,7 @@
  }
 
  // Main Method
- // Contributer: Noami Douglas and Kelvin Nguyen
+ // Contributor: Noami Douglas and Kelvin Nguyen
  public class Main {
     public static void main(String[] args) {
         // Path to text file
