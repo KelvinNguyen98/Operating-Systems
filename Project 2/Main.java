@@ -206,7 +206,7 @@
  }
 
  // Main Method
- // Contributor: Noami Douglas and Kelvin Nguyen
+ // Contributor: Naomi Douglas and Kelvin Nguyen
  public class Main {
     public static void main(String[] args) {
         // Path to text file
